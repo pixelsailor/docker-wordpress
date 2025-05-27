@@ -7,7 +7,7 @@ services:
       - '443:443'
     volumes:
       - "./nginx/:/etc/nginx/templates/"
-      - ./src:/var/www/html:rw,cached
+      - ./wordpress:/var/www/html:rw,cached
       - ./certs:/etc/certs
     environment:
       - "NGINX_ENVSUBST_TEMPLATE_SUFFIX=.conf"
@@ -35,7 +35,7 @@ services:
       dockerfile: Dockerfile
     container_name: ${APP_NAME}-wordpress
     volumes:
-      - ./src:/var/www/html:rw,cached
+      - ./wordpress:/var/www/html:rw,cached
       - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
     depends_on:
       - mysql
@@ -44,12 +44,10 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: ${APP_NAME}-phpmyadmin
-    volumes:
-      - ./config/phpmyadmin.ini:/usr/local/etc/php/conf.d/phpmyadmin.ini
     environment:
-      PMA_HOST: "${DB_HOST}"
+      PMA_HOST: 'mysql'
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - '8082:80'
     links:
@@ -68,4 +66,4 @@ services:
     working_dir: /var/www/html
     restart: 'no'
     volumes:
-      - ./src:/var/www/html:rw,cached
+      - ./wordpress:/var/www/html:rw,cached

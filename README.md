@@ -18,6 +18,10 @@ brew install nss
 ```
 > nss is only required for Firefox
 
+## Setup Docker Environment 
+
+Copy `.env.example` in the project root to `.env` and edit the values.
+
 ## Install Bedrock
 
 Use the `composer` container to download [Bedrock](https://roots.io/bedrock/docs/installation/)
@@ -43,15 +47,11 @@ $ sudo vim /etc/hosts
 ## Use localhost:port (Optional)
 ...
 
-## Setup Environment 
-
-1. For Docker
-
-Copy `.env.example` in the project root to `.env` and the values.
-
-2. For Bedrock/Wordpress
+## Setup Wordpress Environment 
 
 Copy the `./bedrock/.env.example` to `.env` and edit as necessary. Values should align with those in the root `.env`
+
+> `DB_HOST` must be changed to "mysql"
 
 Example:
 

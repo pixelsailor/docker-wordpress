@@ -1,5 +1,5 @@
 # Application
-src/
+wordpress/
 # src/web/app/plugins/*
 # !src/web/app/plugins/.gitkeep
 # src/web/app/mu-plugins/*/
