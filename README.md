@@ -11,12 +11,25 @@ compatibility. Everything else has remained the same.
 * Docker
 * mkcert for creating SSL certs
 
-Install mkcert:
+Install mkcert (pick your OS):
+
+**macOS (Homebrew)**
+
 ```
 brew install mkcert
 brew install nss
 ```
-> nss is only required for Firefox
+
+`nss` is only needed so mkcert can register the local CA in Firefox.
+
+**Linux (Debian / Ubuntu)**
+
+```
+sudo apt install mkcert
+sudo apt install libnss3-tools
+```
+
+`mkcert` is in the `universe` repository on Ubuntu; enable it if `apt` cannot find the package. `libnss3-tools` provides `certutil` for Firefox trust (similar role to `nss` on macOS). If your distribution does not package mkcert, use the [mkcert installation docs](https://github.com/FiloSottile/mkcert#installation).
 
 ## Setup Docker Environment 
 
